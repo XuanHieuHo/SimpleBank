@@ -172,6 +172,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		{
 			name: "OK",
 			body: gin.H{
+				"owner": account.Owner,
 				"currency": account.Currency,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -213,6 +214,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		{
 			name: "InternalError",
 			body: gin.H{
+				"owner": account.Owner,
 				"currency": account.Currency,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
