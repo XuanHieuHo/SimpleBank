@@ -198,6 +198,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		{
 			name: "NoAuthorization",
 			body: gin.H{
+				"owner": account.Owner,
 				"currency": account.Currency,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -233,6 +234,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		{
 			name: "InvalidCurrency",
 			body: gin.H{
+				"owner": account.Owner,
 				"currency": "invalid",
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
