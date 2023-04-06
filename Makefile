@@ -1,4 +1,5 @@
 DB_URL=postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable
+REMOTE_DB_URL=postgresql://root:ah08Ozi659vT9k0wmsUR@simple-bank.c3cqpn6hpvc7.us-east-1.rds.amazonaws.com:5432/simple_bank
 
 postgres:
 	docker run --name postgres12 --network bank-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:15-alpine
@@ -11,6 +12,9 @@ dropdb:
 
 migrateup:
 	migrate -path db/migration -database "$(DB_URL)" -verbose up
+
+migrateupaws:
+	migrate -path db/migration -database "$(REMOTE_DB_URL)" -verbose up
 
 migrateup1:
 	migrate -path db/migration -database "$(DB_URL)" -verbose up 1
