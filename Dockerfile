@@ -6,7 +6,7 @@ COPY . .
 RUN go build -o main main.go
 RUN apk add curl
 RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz
-
+RUN chmod +x ./start.sh
 
 #Run stage
 FROM alpine:3.17
@@ -17,7 +17,7 @@ COPY app.env .
 COPY start.sh .
 COPY wait-for.sh .
 COPY db/migration ./migration
-RUN chmod +x ./start.sh
+
 
 EXPOSE 8080
 CMD [ "/app/main" ]
