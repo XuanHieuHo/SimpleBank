@@ -1,5 +1,4 @@
 #Build stage
-
 FROM golang:1.19-alpine3.17 AS builder
 WORKDIR /app
 COPY . .
@@ -17,6 +16,8 @@ COPY app.env .
 COPY start.sh .
 COPY wait-for.sh .
 COPY db/migration ./migration
+RUN chmod +x ./start.sh
+RUN chmod +x ./wait-for.sh
 
 
 EXPOSE 8080
